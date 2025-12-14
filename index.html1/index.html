@@ -1,0 +1,1004 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain Cafe - Menu & Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: #f8fafc;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            background: white;
+            padding: 10px;
+            margin: 0 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #dbeafe;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Navigation Tabs */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .tab-btn {
+            padding: 15px 35px;
+            border: none;
+            background: none;
+            color: #64748b;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            color: white;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Gallery Tab */
+        .gallery-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .gallery-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .gallery-caption {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .gallery-caption h3 {
+            color: #1e3a8a;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .gallery-caption p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+        
+        /* Menu Tab */
+        .menu-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 30px;
+            border: 2px solid #3b82f6;
+            background: white;
+            color: #3b82f6;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .menu-table {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+        
+        .menu-table th {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .menu-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.1rem;
+        }
+        
+        .menu-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .menu-table tr:hover {
+            background: #f1f5f9;
+        }
+        
+        .drink-name {
+            color: #1e3a8a;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .price-cell {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        .size-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-section {
+            text-align: center;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            margin-top: 50px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #25D366;
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #1e3a8a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background: #3b82f6;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: #64748b;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .tabs-container {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .menu-table th, .menu-table td {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="logo.jpeg" alt="Captain Cafe Logo" class="logo-img">
+                <div>
+                    <h1>CAPTAIN CAFE</h1>
+                    <p class="subtitle">Tripoli - Jabal Al-Beddawi</p>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jabal Al-Beddawi, Tripoli</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>78858845</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>8:00 AM - 12:00 AM</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Tabs Navigation -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="gallery">
+                <i class="fas fa-images"></i> Drinks Gallery
+            </button>
+            <button class="tab-btn" data-tab="menu">
+                <i class="fas fa-utensils"></i> Full Menu
+            </button>
+        </div>
+        
+        <!-- Gallery Tab Content -->
+        <div class="tab-content active" id="gallery">
+            <section class="gallery-section">
+                <h2>Our Drinks Gallery</h2>
+                
+                <div class="gallery-grid">
+                    <!-- Drink 1 -->
+                    <div class="gallery-item">
+                        <img src="drink.jpeg" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 2 -->
+                    <div class="gallery-item">
+                        <img src="drink1.jpeg" alt="Chocolate Milkshake" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 3 -->
+                    <div class="gallery-item">
+                        <img src="drink2.jpeg" alt="Mango Smoothie" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 4 -->
+                    <div class="gallery-item">
+                        <img src="drink3.jpeg" alt="Berry Smoothie" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 5 -->
+                    <div class="gallery-item">
+                        <img src="drink4.jpeg" alt="Caramel Frappe" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 6 -->
+                    <div class="gallery-item">
+                        <img src="drink5.jpeg" alt="Iced Coffee" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 7 -->
+                    <div class="gallery-item">
+                        <img src="drink6.jpeg" alt="Special Drink" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 8 -->
+                    <div class="gallery-item">
+                        <img src="drink7.jpeg" alt="Passion Smoothie" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 10 -->
+                    <div class="gallery-item">
+                        <img src="drink9.jpeg" alt="Coffee Special" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 11 -->
+                    <div class="gallery-item">
+                        <img src="drink10.jpeg" alt="Special Drink" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                    
+                    <!-- Drink 12 -->
+                    <div class="gallery-item">
+                        <img src="drink11.jpeg" alt="Special Drink" class="gallery-img">
+                        <div class="gallery-caption">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Menu Tab Content -->
+         <div class="tab-content" id="menu">
+            <section class="menu-section">
+                <h2>Drinks Menu</h2>
+                
+                <!-- Category Buttons -->
+                <div class="menu-categories">
+                    <button class="category-btn active" data-category="all">All Drinks</button>
+                    <button class="category-btn" data-category="milkshakes">Milkshakes</button>
+                    <button class="category-btn" data-category="smoothies">Smoothies</button>
+                    <button class="category-btn" data-category="frappe">Frappe</button>
+                    <button class="category-btn" data-category="coffee">Coffee</button>
+                    <button class="category-btn" data-category="mojito">Mojito</button>
+                </div>
+                
+                <!-- Milkshakes Table -->
+                <table class="menu-table" data-category="milkshakes">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Milkshakes</th>
+                        </tr>
+                        <tr>
+                            <th>Drink</th>
+                            <th>Small (350ml)</th>
+                            <th>Medium (400ml)</th>
+                            <th>Large (500ml)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="drink-name">Strawberry Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Berry Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Mix Berry Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Vanilla Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Chocolate Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Oreo Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Lotus Milkshake</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Smoothies Table -->
+                <table class="menu-table" data-category="smoothies">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Smoothies</th>
+                        </tr>
+                        <tr>
+                            <th>Drink</th>
+                            <th>Small (350ml)</th>
+                            <th>Medium (400ml)</th>
+                            <th>Large (500ml)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="drink-name">Strawberry Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Berry Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Mango Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Passion Fruit Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Mango Passion Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Pineapple Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Berry Mix Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Passion Moment Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">CocoBerry Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Pinacolada Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Captain Special Smoothie</td>
+                            <td class="price-cell">270</td>
+                            <td class="price-cell">330</td>
+                            <td class="price-cell">390</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Frappe Table -->
+                <table class="menu-table" data-category="frappe">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Frappe</th>
+                        </tr>
+                        <tr>
+                            <th>Drink</th>
+                            <th>Small (350ml)</th>
+                            <th>Medium (400ml)</th>
+                            <th>Large (500ml)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="drink-name">Frappuccino</td>
+                            <td class="price-cell">250</td>
+                            <td class="price-cell">300</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Caramel Frappe</td>
+                            <td class="price-cell">250</td>
+                            <td class="price-cell">300</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Frappe Mocha</td>
+                            <td class="price-cell">250</td>
+                            <td class="price-cell">300</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Iced Coffee Table -->
+                <table class="menu-table" data-category="coffee">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Iced Coffee</th>
+                        </tr>
+                        <tr>
+                            <th>Drink</th>
+                            <th>Small (350ml)</th>
+                            <th>Medium (400ml)</th>
+                            <th>Large (500ml)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="drink-name">Ice Americano</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Passion Americano</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Iced Latte</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Ice Caramel Latte</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Strawberry Ice Latte</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Berry Ice Latte</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Ice Caramel Macchiato</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Ice Mocha</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Ice Latte</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Berry Mocha</td>
+                            <td class="price-cell">250</td>
+                            <td class="price-cell">320</td>
+                            <td class="price-cell">380</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Sunset Iced Latte</td>
+                            <td class="price-cell">250</td>
+                            <td class="price-cell">320</td>
+                            <td class="price-cell">380</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Mojito Table -->
+                <table class="menu-table" data-category="mojito">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Mojito</th>
+                        </tr>
+                        <tr>
+                            <th>Drink</th>
+                            <th>Small (350ml)</th>
+                            <th>Medium (400ml)</th>
+                            <th>Large (500ml)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="drink-name">Classic Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Mango Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Passion Fruit Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Kiwi Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Blue Berry Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Black Berry Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Strawberry Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Pineapple Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                        <tr>
+                            <td class="drink-name">Lychee Mojito</td>
+                            <td class="price-cell">230</td>
+                            <td class="price-cell">290</td>
+                            <td class="price-cell">360</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
+        <!-- WhatsApp Section -->
+        <section class="whatsapp-section">
+            <h3 style="color: white; margin-bottom: 10px;">Want to order?</h3>
+            <p style="color: #dbeafe; font-size: 1.1rem;">Contact us directly on WhatsApp for quick orders and inquiries</p>
+            <a href="https://wa.me/96178858845" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>Order on WhatsApp: 78858845</span>
+            </a>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/96178858845" class="social-icon" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </a>
+            </div>
+            
+            <p class="copyright">
+                © 2023 Captain Cafe Shop | Tripoli - Jabal Al-Beddawi<br>
+                Phone: 78858845 | Open Daily: 8:00 AM - 12:00 AM
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Menu category filtering
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const menuTables = document.querySelectorAll('.menu-table');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                
+                // Show/hide tables based on category
+                menuTables.forEach(table => {
+                    if (category === 'all' || table.getAttribute('data-category') === category) {
+                        table.style.display = 'table';
+                        setTimeout(() => {
+                            table.style.opacity = '1';
+                        }, 10);
+                    } else {
+                        table.style.opacity = '0';
+                        setTimeout(() => {
+                            table.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show all tables initially
+            menuTables.forEach(table => {
+                table.style.display = 'table';
+                table.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>
